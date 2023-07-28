@@ -17,7 +17,7 @@
 <style>
 
 	.num {
-    	font-size: var(--height);
+    	font-size: var(--digit-height);
 	}
 </style>
 
