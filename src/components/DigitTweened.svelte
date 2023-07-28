@@ -18,6 +18,7 @@
 
 	.num {
     	font-size: var(--digit-height);
+		height: 108px;
 	}
 </style>
 
