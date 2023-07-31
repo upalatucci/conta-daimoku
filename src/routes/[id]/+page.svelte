@@ -17,7 +17,7 @@
 
 	function fetchPolling() {
 		fetchDaimoku(data.id).then((daimokuResponse) => {
-			daimoku = daimokuResponse || 0;
+			daimoku = daimokuResponse;
 		});
 	}
 
@@ -33,7 +33,7 @@
 
 	function addDaimoku() {
 		setDaimoku(data.id, inputNumber).then((daimokuResponse) => {
-			daimoku = daimokuResponse || 0;
+			daimoku = daimokuResponse;
 		});
 	}
 </script>
