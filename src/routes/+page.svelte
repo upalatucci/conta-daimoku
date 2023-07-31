@@ -6,7 +6,7 @@
    <h1> Crea il tuo Conta Daimoku</h1>
 
    <form method="post" use:enhance>
-        <input type="text" placeholder="Codice" />
+        <input type="text" placeholder="Codice" name='id' />
         <button type="submit">Crea</button>
    </form>
 </section>

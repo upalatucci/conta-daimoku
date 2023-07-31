@@ -1,5 +1,7 @@
 import adapter from '@sveltejs/adapter-auto';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
@@ -8,7 +10,10 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter(),
 		serviceWorker: {
-			register: process.env.NODE_ENV === 'production'
+			register: isProduction
+		},
+		csrf: {
+			checkOrigin: isProduction
 		}
 	}
 };

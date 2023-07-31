@@ -44,7 +44,7 @@
 </svelte:head>
 
 <section>
-	{#if daimoku }
+	{#if daimoku !== null }
 		<h1>Conta Daimoku</h1>
 		<Daimoku {daimoku} />
 
