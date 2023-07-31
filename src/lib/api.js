@@ -1,5 +1,8 @@
-export function fetchDaimoku() {
-	return fetch('/api/daimoku', {
+/**
+ * @param {string} id
+ */
+export function fetchDaimoku(id) {
+	return fetch(`/api/daimoku/${id}`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
@@ -8,10 +11,11 @@ export function fetchDaimoku() {
 }
 
 /**
+ * @param {string} id
  * @param {number} daimoku
  */
-export function setDaimoku(daimoku) {
-	return fetch('/api/daimoku', {
+export function setDaimoku(id, daimoku) {
+	return fetch(`/api/daimoku/${id}`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'

@@ -2,7 +2,7 @@
 	import DigitTweened from './DigitTweened.svelte';
 	export let daimoku = 0;
 	
-	$: daimokuDigits = daimoku.toString().split('')
+	$: daimokuDigits = daimoku?.toString()?.split('')
 </script>
 
 <style>
@@ -25,5 +25,4 @@
 		</ul>
 
 	{/each}
-
 </div>
