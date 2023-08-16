@@ -7,7 +7,19 @@ export const actions = {
 		const data = await request.formData();
 
 		const id = data.get('id');
-		await kv.set(`daimoku-${id}`, 0);
+		const name = data.get('name');
+		const phrase = data.get('phrase');
+		const objective = data.get('objective');
+
+		await Promise.all([
+			kv.set(`daimoku-${id}`, 0),
+
+			kv.hmset(`${id}-info`, {
+				name,
+				phrase,
+				objective
+			})
+		]);
 
 		throw redirect(307, `/${id}`);
 	}

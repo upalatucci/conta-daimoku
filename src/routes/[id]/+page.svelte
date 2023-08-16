@@ -4,10 +4,11 @@
 	import Daimoku from '../../components/Daimoku.svelte';
 
 	/**
-	 * @type {{ daimoku: number; id: string }}
+	 * @type {{ daimoku: number; id: string, info: { name: string; phrase: string; objective: string; };}}
 	 */
 	export let data;
-	$: daimoku = data.daimoku
+
+	$: daimoku = data.daimoku;
 	let inputNumber = 1;
 
 	/**
@@ -39,13 +40,16 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>{data.info.name}</title>
+	<meta name="description" content={data.info.phrase} />
 </svelte:head>
 
 <section>
-	{#if daimoku !== null }
-		<h1>Conta Daimoku</h1>
+	{#if daimoku !== null}
+		<h1>{data.info.name}</h1>
+		<p>{data.info.phrase}</p>
+
+		<p>Obiettivo: {data.info.objective} di daimoku</p>
 		<Daimoku {daimoku} />
 
 		<form>
@@ -69,6 +73,7 @@
 
 	h1 {
 		width: 100%;
+		margin-bottom: 0.5rem;
 	}
 
 	form {

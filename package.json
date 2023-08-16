@@ -28,6 +28,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@vercel/kv": "^0.2.2"
+		"@vercel/kv": "^0.2.2",
+		"lodash.debounce": "^4.0.8"
 	}
 }
