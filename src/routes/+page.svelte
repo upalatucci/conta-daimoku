@@ -2,11 +2,15 @@
 	import { enhance } from '$app/forms';
 	import { fetchDaimoku } from '$lib/api';
 	import debounce from 'lodash.debounce';
+	import RadioBackground from '../components/RadioBackground.svelte';
+
+	const backgrounds = import.meta.glob('../../static/backgrounds/*');
 
 	/**
 	 * @type {string | null}
 	 */
 	let code = null;
+	let name = '';
 
 	let codeError = '';
 	let codeEdited = false;
@@ -28,6 +32,13 @@
 		codeExists();
 	}
 
+	$: if (name) {
+		code = name
+			.replace(/ /g, '-')
+			.replace(/[^a-zA-Z0-9-]/g, '')
+			.toLowerCase();
+	}
+
 	$: {
 		stringObjective = stringObjective.replace(/[^0-9,]/g, '');
 		objective = Number(stringObjective.replace(/[\,]/g, ''));
@@ -46,7 +57,7 @@
 
 	<form method="post" use:enhance>
 		<label for="name">Titolo</label>
-		<input type="text" placeholder="Titolo" name="name" required />
+		<input type="text" placeholder="Titolo" name="name" required bind:value={name} />
 
 		<label for="phrase">Frase</label>
 		<textarea name="phrase" placeholder="Frase" required />
@@ -65,6 +76,15 @@
 		{#if codeError}
 			<p class="code-error">{codeError}</p>
 		{/if}
+
+		<div class="backgrounds">
+			<div class="backgrounds-title">Immagine</div>
+			<div class="backgrounds-radio">
+				{#each Object.keys(backgrounds) as background}
+					<RadioBackground backgroundFilePath={background} />
+				{/each}
+			</div>
+		</div>
 		<button type="submit">Crea</button>
 	</form>
 </section>
@@ -112,5 +132,24 @@
 	.code-error {
 		color: red;
 		margin-top: 0;
+	}
+
+	.backgrounds {
+		margin-bottom: 1rem;
+	}
+
+	.backgrounds-title {
+		text-align: center;
+	}
+
+	.backgrounds-radio {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 2rem;
+	}
+
+	.backgrounds > div {
+		margin: 10px;
 	}
 </style>

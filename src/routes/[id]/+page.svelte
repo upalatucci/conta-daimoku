@@ -2,13 +2,20 @@
 	import { fetchDaimoku, setDaimoku } from '$lib/api';
 	import { onMount } from 'svelte';
 	import Daimoku from '../../components/Daimoku.svelte';
+	import BackgroundProgress from '../../components/BackgroundProgress.svelte';
 
 	/**
-	 * @type {{ daimoku: number; id: string, info: { name: string; phrase: string; objective: string; };}}
+	 * @type {{ daimoku: number; id: string, info: { name: string; phrase: string; objective: string; background: string; };}}
 	 */
+	// @ts-ignore
 	export let data;
 
 	$: daimoku = data.daimoku;
+
+	$: progressBasePoint = Math.trunc(
+		(daimoku / Number(data.info.objective.replace(/,/g, ''))) * 10000
+	);
+
 	let inputNumber = 1;
 
 	/**
@@ -50,6 +57,8 @@
 		<p>{data.info.phrase}</p>
 
 		<p>Obiettivo: {data.info.objective} di daimoku</p>
+
+		<BackgroundProgress background={data.info.background} {progressBasePoint} />
 		<Daimoku {daimoku} />
 
 		<form>
