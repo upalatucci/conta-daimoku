@@ -1,13 +1,22 @@
 <script>
 	import DigitTweened from './DigitTweened.svelte';
 	export let daimoku = 0;
-	
-	$: daimokuDigits = daimoku?.toString()?.split('')
+
+	$: daimokuDigits = daimoku?.toString()?.split('');
 </script>
 
-<style>
+<div class="daimoku-container">
+	{#each daimokuDigits as digit}
+		<ul>
+			<DigitTweened digit={Number(digit)} />
+		</ul>
+	{/each}
+</div>
 
-	
+<style>
+	.daimoku-container {
+		max-width: 100%;
+	}
 	ul {
 		--digit-height: 94px;
 		display: inline-block;
@@ -17,12 +26,3 @@
 		overflow: hidden;
 	}
 </style>
-
-<div>
-	{#each daimokuDigits as digit}
-		<ul>
-			<DigitTweened digit={Number(digit)} />
-		</ul>
-
-	{/each}
-</div>

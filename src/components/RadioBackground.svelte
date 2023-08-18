@@ -19,6 +19,7 @@
 
 <style>
 	.background-preview label {
+		text-transform: capitalize;
 		display: flex;
 		align-items: center;
 		flex-direction: column;

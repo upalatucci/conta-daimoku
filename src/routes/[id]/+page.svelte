@@ -69,6 +69,10 @@
 		<h1>Il Conta Daimoku <strong>{data.id}</strong> non esiste</h1>
 		<a href="/prova">Crealo!</a>
 	{/if}
+
+	{#if progressBasePoint >= 10_000}
+		<img src="https://giphy.com/embed/5jT0jaNDsM6Ik7X9yq" alt="festa" />
+	{/if}
 </section>
 
 <style>

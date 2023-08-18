@@ -4,15 +4,17 @@
 
 	$: progress = progressBasePoint / 100;
 
-	const progressBoxes = new Array(10_000).fill(0).map((_, i) => i + 1);
+	// const progressBoxes = new Array(10_000).fill(0).map((_, i) => i + 1);
 </script>
 
 <div class="background-progress">
 	<div
 		class="progress"
-		style={`background: linear-gradient(to bottom right, #ff000000 0%, #ff000000 ${progress}%, #ffff0000 ${progress}%, #ffff00ff ${
-			progress + 10
-		}%,  #ffff00ff 100%);`}
+		style={`background: linear-gradient(to bottom right, #eeaeca00 0%, #eeaeca00 ${
+			progress - 10
+		}%, #eeaecaff ${progress}%, #c6b4d8 ${progress + 20}%, #94bbe9 ${
+			progress + 30
+		}%,  #94bbe9 100%);`}
 	>
 		<!-- {#each progressBoxes as progressBox}
 			<div class="progress-box" class:active={progressBox <= progressBasePoint}  />
@@ -24,6 +26,7 @@
 <style>
 	img {
 		max-height: 50vh;
+		max-width: 100%;
 	}
 
 	.background-progress {
