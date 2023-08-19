@@ -3,6 +3,9 @@
 	import { fetchDaimoku } from '$lib/api';
 	import debounce from 'lodash.debounce';
 	import RadioBackground from '../components/RadioBackground.svelte';
+    import Editor from '../../node_modules/bytemd/svelte/editor.svelte';
+	import 'bytemd/dist/index.css'
+
 
 	const backgrounds = import.meta.glob('../../static/backgrounds/*');
 
@@ -13,7 +16,7 @@
 	let name = '';
 
 	let codeError = '';
-	let codeEdited = false;
+	let markdown = '#test'
 
 	let goal = 1_000_000;
 	let stringGoal = goal.toLocaleString();
@@ -26,7 +29,6 @@
 	}, 1000);
 
 	$: if (code) {
-		codeEdited = true;
 		codeExists();
 	}
 
@@ -48,6 +50,14 @@
 
 		stringGoal = goal.toLocaleString();
 	}
+
+
+	/**
+	 * @param {{ detail: { value: string; }; }} e
+	 */
+	function handleChange(e) {
+		markdown = e.detail.value
+	}
 </script>
 
 <section>
@@ -58,7 +68,11 @@
 		<input type="text" placeholder="Titolo" name="name" required bind:value={name} />
 
 		<label for="phrase">Frase</label>
-		<textarea name="phrase" placeholder="Frase" required />
+
+		<div class="editor-container">
+		<Editor value={markdown} on:change={handleChange} />
+	</div>
+		<textarea name='phrase' value={markdown} />
 
 		<label for="goal">Obiettivo di daimoku</label>
 		<input
@@ -103,8 +117,13 @@
 		align-items: center;
 	}
 
-	form input,
 	form textarea {
+		display: none;
+	}
+
+	
+
+	form input {
 		width: 100%;
 		padding: 10px;
 		margin: 10px;
@@ -150,5 +169,10 @@
 
 	.backgrounds > div {
 		margin: 10px;
+	}
+
+	.editor-container {
+		margin: 10px 0 20px;
+		width: 100%;
 	}
 </style>

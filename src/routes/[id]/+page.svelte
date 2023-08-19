@@ -4,6 +4,8 @@
 	import Daimoku from '../../components/Daimoku.svelte';
 	import BackgroundProgress from '../../components/BackgroundProgress.svelte';
 	import JSConfetti from 'js-confetti'
+    import Viewer from '../../../node_modules/bytemd/svelte/viewer.svelte';
+
 
 
 	/**
@@ -66,8 +68,10 @@
 <section>
 	{#if daimoku !== null}
 		<h1>{data.info.name}</h1>
-		<p>{data.info.phrase}</p>
 
+		<div class="markdown-container">
+			<Viewer value={data.info.phrase} />
+		</div>
 		<p>Obiettivo: {data.info.goal} di daimoku</p>
 
 		<BackgroundProgress background={data.info.background} {progressBasePoint} />
@@ -122,5 +126,9 @@
 		background-color: #fff;
 	}
 
-	
+
+	.markdown-container {
+		width: 100%;
+		max-width: 400px;
+	}
 </style>
