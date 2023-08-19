@@ -11,9 +11,9 @@
 
 <div class="background-preview">
 	<label>
-		{backgroundAlt}
 		<input type="radio" name="background" value={backgroundValue} />
 		<img src={backgroundURL} alt={backgroundAlt} />
+		{backgroundAlt}
 	</label>
 </div>
 
