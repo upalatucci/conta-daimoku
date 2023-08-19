@@ -16,7 +16,11 @@
 <style>
 	.daimoku-container {
 		max-width: 100%;
+		display: flex;
+		flex-wrap: nowrap;
+		margin: 0 20px;
 	}
+
 	ul {
 		--digit-height: 94px;
 		display: inline-block;
@@ -24,5 +28,15 @@
 		padding-left: 0;
 		height: var(--digit-height);
 		overflow: hidden;
+
+
 	}
+
+		/* On screens that are 600px or less, set the background color to olive */
+		@media screen and (max-width: 600px) {
+			ul {
+				--digit-height: 60px;
+			}
+		}
+
 </style>

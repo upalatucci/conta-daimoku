@@ -6,7 +6,7 @@ import { kv } from '@vercel/kv';
 export async function load({ params }) {
 	const [daimoku, info] = await Promise.all([
 		kv.get(`daimoku-${params.id}`),
-		kv.hmget(`${params.id}-info`, 'name', 'phrase', 'objective', 'background')
+		kv.hmget(`${params.id}-info`, 'name', 'phrase', 'goal', 'background')
 	]);
 
 	return {

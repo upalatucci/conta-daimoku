@@ -9,7 +9,7 @@ export const actions = {
 		const id = data.get('id');
 		const name = data.get('name');
 		const phrase = data.get('phrase');
-		const objective = data.get('objective');
+		const goal = data.get('goal');
 		const background = data.get('background');
 
 		await Promise.all([
@@ -18,7 +18,7 @@ export const actions = {
 			kv.hmset(`${id}-info`, {
 				name,
 				phrase,
-				objective,
+				goal,
 				background
 			})
 		]);

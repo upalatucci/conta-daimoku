@@ -3,18 +3,24 @@
 	import { onMount } from 'svelte';
 	import Daimoku from '../../components/Daimoku.svelte';
 	import BackgroundProgress from '../../components/BackgroundProgress.svelte';
+	import JSConfetti from 'js-confetti'
+
 
 	/**
-	 * @type {{ daimoku: number; id: string, info: { name: string; phrase: string; objective: string; background: string; };}}
+	 * @type {{ daimoku: number; id: string, info: { name: string; phrase: string; goal: string; background: string; };}}
 	 */
 	// @ts-ignore
 	export let data;
 
+	let progressBasePoint = 0
+
 	$: daimoku = data.daimoku;
 
-	$: progressBasePoint = Math.trunc(
-		(daimoku / Number(data.info.objective.replace(/,/g, ''))) * 10000
-	);
+	$: if (data.info?.goal) {
+		progressBasePoint = Math.trunc(
+			(daimoku / Number(data.info.goal.replace(/,/g, ''))) * 10000
+		);
+	}
 
 	let inputNumber = 1;
 
@@ -31,7 +37,6 @@
 
 	onMount(() => {
 		timer = setInterval(fetchPolling, 3000);
-
 		return () => {
 			if (timer) {
 				clearInterval(timer);
@@ -44,11 +49,18 @@
 			daimoku = daimokuResponse;
 		});
 	}
+
+	$: if (progressBasePoint >= 10_000 && globalThis.window) {
+
+		const jsConfetti = new JSConfetti()
+		jsConfetti.addConfetti()
+
+	}
 </script>
 
 <svelte:head>
-	<title>{data.info.name}</title>
-	<meta name="description" content={data.info.phrase} />
+	<title>{data.info?.name}</title>
+	<meta name="description" content={data.info?.phrase} />
 </svelte:head>
 
 <section>
@@ -56,7 +68,7 @@
 		<h1>{data.info.name}</h1>
 		<p>{data.info.phrase}</p>
 
-		<p>Obiettivo: {data.info.objective} di daimoku</p>
+		<p>Obiettivo: {data.info.goal} di daimoku</p>
 
 		<BackgroundProgress background={data.info.background} {progressBasePoint} />
 		<Daimoku {daimoku} />
@@ -70,9 +82,6 @@
 		<a href="/prova">Crealo!</a>
 	{/if}
 
-	{#if progressBasePoint >= 10_000}
-		<img src="https://giphy.com/embed/5jT0jaNDsM6Ik7X9yq" alt="festa" />
-	{/if}
 </section>
 
 <style>
@@ -112,4 +121,6 @@
 		border: 1px solid #ccc;
 		background-color: #fff;
 	}
+
+	
 </style>

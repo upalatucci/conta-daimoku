@@ -8,6 +8,7 @@
 </script>
 
 <div class="background-progress">
+	<img src={`backgrounds/${background}.jpg`} alt={background} />
 	<div
 		class="progress"
 		style={`background: linear-gradient(to bottom right, #eeaeca00 0%, #eeaeca00 ${
@@ -20,7 +21,6 @@
 			<div class="progress-box" class:active={progressBox <= progressBasePoint}  />
 		{/each} -->
 	</div>
-	<img src={`backgrounds/${background}.jpg`} alt={background} />
 </div>
 
 <style>
@@ -53,9 +53,5 @@
 	.progress-box.active {
 		border: none;
 		background-color: transparent;
-	}
-
-	.progress-gradient {
-		background: linear-gradient(to top left, #ff0000 0%, #ff0000 50%, green 50%, green 100%);
 	}
 </style>

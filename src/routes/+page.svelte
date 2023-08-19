@@ -15,15 +15,13 @@
 	let codeError = '';
 	let codeEdited = false;
 
-	let objective = 1_000_000;
-	let stringObjective = objective.toLocaleString();
+	let goal = 1_000_000;
+	let stringGoal = goal.toLocaleString();
 
 	const codeExists = debounce(() => {
 		if (!code) return;
 		fetchDaimoku(code).then((daimokuResponse) => {
-			if (daimokuResponse) {
-				codeError = "Un conta-daimoku con questo codice gia' esiste";
-			}
+			codeError = daimokuResponse ? "Un conta-daimoku con questo codice gia' esiste" : '';
 		});
 	}, 1000);
 
@@ -40,15 +38,15 @@
 	}
 
 	$: {
-		stringObjective = stringObjective.replace(/[^0-9,]/g, '');
-		objective = Number(stringObjective.replace(/[\,]/g, ''));
+		stringGoal = stringGoal.replace(/[^0-9,]/g, '');
+		goal = Number(stringGoal.replace(/[\,]/g, ''));
 
-		if (Number.isNaN(objective)) {
-			objective = 0;
-			stringObjective = '0';
+		if (Number.isNaN(goal)) {
+			goal = 0;
+			stringGoal = '0';
 		}
 
-		stringObjective = objective.toLocaleString();
+		stringGoal = goal.toLocaleString();
 	}
 </script>
 
@@ -62,13 +60,13 @@
 		<label for="phrase">Frase</label>
 		<textarea name="phrase" placeholder="Frase" required />
 
-		<label for="objective">Obiettivo di daimoku</label>
+		<label for="goal">Obiettivo di daimoku</label>
 		<input
 			type="text"
 			placeholder="Obiettivo"
-			name="objective"
+			name="goal"
 			required
-			bind:value={stringObjective}
+			bind:value={stringGoal}
 		/>
 
 		<label for="id">Codice</label>
