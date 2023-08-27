@@ -1,5 +1,9 @@
 <script>
 	export let backgroundFilePath;
+	/**
+	 * @type {string | null}
+	 */
+	 export let selectedBackground;
 
 	const backgroundValue = backgroundFilePath
 		.replace('../../static/backgrounds/', '')
@@ -11,7 +15,7 @@
 
 <div class="background-preview">
 	<label>
-		<input type="radio" name="background" value={backgroundValue} />
+		<input type="radio" name="background" value={backgroundValue} bind:group={selectedBackground} />
 		<img src={backgroundURL} alt={backgroundAlt} />
 		{backgroundAlt}
 	</label>

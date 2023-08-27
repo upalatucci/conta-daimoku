@@ -2,6 +2,9 @@
  * @param {string} id
  */
 export function fetchDaimoku(id) {
+	// @ts-ignore
+	if (typeof window === 'undefined') return Promise.resolve(null);
+
 	return fetch(`/api/daimoku/${id}`, {
 		method: 'GET',
 		headers: {

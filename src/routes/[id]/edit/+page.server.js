@@ -1,4 +1,21 @@
 import { kv } from '@vercel/kv';
+
+/**
+ * @param {{ params: { id: string }; }} context
+ */
+export async function load({ params }) {
+	const [daimoku, info] = await Promise.all([
+		kv.get(`daimoku-${params.id}`),
+		kv.hmget(`${params.id}-info`, 'name', 'phrase', 'goal', 'background')
+	]);
+
+	return {
+		daimoku,
+		id: params.id,
+		info
+	};
+}
+
 import { redirect } from '@sveltejs/kit';
 
 /** @type {import('./$types').Actions} */
@@ -11,17 +28,13 @@ export const actions = {
 		const phrase = data.get('phrase');
 		const goal = data.get('goal');
 		const background = data.get('background');
-		const editCode = data.get('editCode');
 
 		await Promise.all([
-			kv.set(`daimoku-${id}`, 0),
-
 			kv.hmset(`${id}-info`, {
 				name,
 				phrase,
 				goal,
-				background,
-				editCode
+				background
 			})
 		]);
 

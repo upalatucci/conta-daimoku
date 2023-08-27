@@ -25,6 +25,10 @@
 	}
 
 	let inputNumber = 1;
+	/**
+	 * @type {string | null}
+	 */
+	let editURL
 
 	/**
 	 * @type {number | null}
@@ -39,11 +43,15 @@
 
 	onMount(() => {
 		timer = setInterval(fetchPolling, 3000);
+
+		editURL = localStorage.getItem(data.id.toString());
+
 		return () => {
 			if (timer) {
 				clearInterval(timer);
 			}
 		};
+
 	});
 
 	function addDaimoku() {
@@ -67,7 +75,11 @@
 
 <section>
 	{#if daimoku !== null}
-		<h1>{data.info.name}</h1>
+		<h1>{data.info.name}
+		
+		{#if !!editURL}
+			<a href={editURL}>Modifica</a>
+	{/if}</h1>
 
 		<div class="markdown-container">
 			<Viewer value={data.info.phrase} />
@@ -83,7 +95,7 @@
 		</form>
 	{:else}
 		<h1>Il Conta Daimoku <strong>{data.id}</strong> non esiste</h1>
-		<a href="/prova">Crealo!</a>
+		<a href="/">Crealo!</a>
 	{/if}
 
 </section>
