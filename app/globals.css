@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f8f9fa;
+  --foreground: #171717;
+}
+
+body {
+  font-family: var(--font-roboto);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.countdown {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.countdown .time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countdown .item h2 {
+  margin: 10px 0;
+  font-size: 1.5rem;
+}
+
+.countdown .item small {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  color: #1b1564;
+}
+
+@media (min-width: 768px) {
+  .countdown {
+    gap: 50px;
+  }
+
+  .countdown .time h2 {
+    font-size: 6.5rem;
+  }
+  .countdown .time small {
+    font-size: 1.8rem;
+  }
+}
+
+#daimoku {
+  background: -webkit-linear-gradient(45deg, #09009f, #00ff95 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 64px;
+  padding: 1rem 0;
+}
+
+@media (min-width: 768px) {
+  #daimoku {
+    font-size: 120px;
+  }
+}
