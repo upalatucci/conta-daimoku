@@ -1,11 +1,11 @@
-import Daimoku from "@/components/Obiettivi";
+import Obiettivi from "@/components/Obiettivi";
 import Hero from "@/components/Hero";
 
 export default async function Home() {
   return (
     <>
       <Hero />
-      <Daimoku />
+      <Obiettivi />
       {/* <Brands />
       <Testimonials />
       <Blog />

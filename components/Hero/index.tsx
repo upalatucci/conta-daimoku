@@ -15,7 +15,7 @@ const Hero = () => {
                 data-wow-delay=".2s"
               >
                 <h1 className="mb-8 text-3xl font-bold leading-tight text-black  sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                  Conta Daimoki Campi Flegrei
+                  Conta Daimoku Campi Flegrei
                 </h1>
                 <Daimoku />
               </div>

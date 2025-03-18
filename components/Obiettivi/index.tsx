@@ -8,16 +8,15 @@ const Obiettivi = () => {
     <section id="obiettivi" className="overflow-hidden py-4 md:py-20 lg:py-4">
       <div className="container flex justify-center">
         <div className="px-4">
-          <div className="mx-auto text-center">
-            <h2 className="mb-3 text-2xl font-bold text-primary sm:text-3xl lg:text-2xl xl:text-3xl">
-              OBIETTIVI
-            </h2>
+          <div className="mx-auto text-center max-w-3xl">
             <ul className="mb-10 text-xl">
               <li className="mb-4">
-                Sfidarsi a recitare almeno 60’ di Daimoku al giorno
+                Realizziamo in Unità 10.000.000 di Daimoku per la protezione e
+                la buona salute di tutti i praticanti e di tutti i cittadini dei
+                Campi Flegrei
               </li>
 
-              <li>Studiare insieme le guide di Sensei</li>
+              <li>Studiamo insieme le guide di Sensei</li>
             </ul>
 
             {guide
