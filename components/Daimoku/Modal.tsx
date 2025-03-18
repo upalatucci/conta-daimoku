@@ -183,7 +183,7 @@ const Modal: FC<ModalProps> = ({ open, setOpen }) => {
                     {!defaultMode && (
                       <p className="text-sm text-gray-500">
                         {success &&
-                          "Stai incoraggiando anche tante altre persone a fare daimoku per il corso, Grazie"}
+                          "Stai incoraggiando anche tante altre persone a fare daimoku, Grazie"}
 
                         {error && "Riprova piu tardi"}
                       </p>
