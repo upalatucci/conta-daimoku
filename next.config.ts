@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  serverExternalPackages: [
+    "@mdx-js/mdx",
+    "next-mdx-remote",
+  ],
 };
 
 export default nextConfig;

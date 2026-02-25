@@ -2,6 +2,7 @@
 import useDaimoku from "@/hooks/useDaimoku";
 import { useEffect, useRef, useState } from "react";
 import Modal from "./Modal";
+import ChantingButton from "../Chanting/ChantingButton";
 
 function usePrevious(value: number) {
   const ref = useRef<number>(null);
@@ -57,10 +58,11 @@ const Obiettivi = () => {
               onClick={() => setModalOpen(true)}
               className="shadow-submit rounded-md bg-primary px-9 py-4 text-base font-medium text-white duration-300 hover:bg-primary/90"
             >
-              Aggiungi Daimoku
+              Aggiungi Daimoku gia&apos; fatto
             </button>
           </div>
         </div>
+        <ChantingButton />
       </div>
       <Modal open={modalOpen} setOpen={setModalOpen} />
     </div>

@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import Image from "next/image";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import { evaluate } from "@mdx-js/mdx";
+import * as runtime from "react/jsx-runtime";
 import { highlight } from "sugar-high";
 import React from "react";
 
@@ -108,12 +109,10 @@ const components = {
   ul: List,
 };
 
-export function CustomMDX(props) {
-  return (
-    <MDXRemote
-      {...props}
-      
-      components={{ ...components, ...(props.components || {}) }}
-    />
-  );
+export async function CustomMDX(props) {
+  const { default: MDXContent } = await evaluate(props.source, {
+    ...runtime,
+  });
+
+  return <MDXContent components={{ ...components, ...(props.components || {}) }} />;
 }
